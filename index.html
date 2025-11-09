@@ -372,20 +372,24 @@ window.onload = () => {
 // ==== LÓGICA DE BOTONES ====
 botones.forEach(boton => {
   boton.addEventListener('click', async () => {
-    if (bloqueado) return;
     const id = boton.id;
+
+    // ⚙️ Manejo de bloqueo general
+    // Los botones 1 y 2 usan bloqueo total
+    if (bloqueado && (id === 'btn1' || id === 'btn2')) return;
+
+    // Los botones 3, 4 y 5 tienen su propio cooldown de 0.5s
+    if ((id === 'btn3' || id === 'btn4' || id === 'btn5') && boton.disabled) return;
 
     // === BOTÓN 1: Funcionamiento Normal ===
     if (id === 'btn1') {
+      bloquearBotones(500);
       if (estados.btn2) {
-        bloquearBotones(500);
         apagarGrupo('btn2', true);
         setTimeout(() => encenderGrupo('btn1'), 250);
       } else if (!estados.btn1) {
-        bloquearBotones(500);
         encenderGrupo('btn1');
       } else {
-        bloquearBotones(500);
         apagarGrupo('btn1');
       }
     }
@@ -393,7 +397,7 @@ botones.forEach(boton => {
     // === BOTÓN 2: Corte de Luz (Secuencia avanzada) ===
     else if (id === 'btn2') {
       const color = colores.btn2;
-      bloquearBotones(10000);
+      bloquearBotones(10000); // evita spam mientras corre la secuencia
 
       if (estados.btn1) {
         apagarGrupo('btn1');
@@ -403,20 +407,14 @@ botones.forEach(boton => {
       // 🟢 Fase 0: Grupos y PLC
       ['Grupos', 'PLC'].forEach(idObj => encender(idObj, color));
 
-      // 🕓 Esperar 4 segundos
       await esperar(4000);
 
-      // 🟢 Fase 1: E_1, E_3, E_2, FM_1, FM_2, FM_3
+      // 🟢 Fase 1
       ['E_1', 'E_3', 'E_2', 'FM_1', 'FM_2', 'FM_3'].forEach(idObj => encender(idObj, color));
-
-      // 🕓 Esperar 0.5 segundo
       await esperar(500);
 
       // 🟢 Fase 2
-      ['Tablero_Quirofano', 'Tablero_Emer', 'Tablero_FM', 'FM', 'Emergencia', 'Tablero_Guardia']
-      .forEach(idObj => encender(idObj, color));
-
-      // 🕓 Esperar 0.5 segundo
+      ['Tablero_Quirofano', 'Tablero_Emer', 'Tablero_FM', 'FM', 'Emergencia', 'Tablero_Guardia'].forEach(idObj => encender(idObj, color));
       await esperar(500);
 
       // 🟢 Fase 3
@@ -429,80 +427,73 @@ botones.forEach(boton => {
     // === BOTÓN 3: Cables Rojos ===
     else if (id === 'btn3') {
       const cable = document.getElementById('cableRojo');
+      boton.disabled = true; // cooldown de 0.5s
+      setTimeout(() => (boton.disabled = false), 500);
+
       if (estados.btn3) {
         cable.style.transition = "stroke 0.5s ease, filter 0.5s ease";
         cable.style.stroke = "rgb(255, 0, 0)";
         cable.style.filter = "none";
         estados.btn3 = false;
-        document.getElementById('btn3').classList.remove('activo', colores.btn3);
+        boton.classList.remove('activo', colores.btn3);
       } else {
         cable.style.transition = "stroke 0.3s ease, filter 0.3s ease";
         cable.style.stroke = "red";
         cable.style.filter = "drop-shadow(0 0 10px red)";
         estados.btn3 = true;
-        document.getElementById('btn3').classList.add('activo', colores.btn3);
+        boton.classList.add('activo', colores.btn3);
       }
     }
 
     // === BOTÓN 4: Cables Azules ===
     else if (id === 'btn4') {
       const cable = document.getElementById('cableAzul');
+      boton.disabled = true;
+      setTimeout(() => (boton.disabled = false), 500);
+
       if (estados.btn4) {
         cable.style.transition = "stroke 0.5s ease, filter 0.5s ease";
         cable.style.stroke = "blue";
         cable.style.filter = "none";
         estados.btn4 = false;
-        document.getElementById('btn4').classList.remove('activo', colores.btn4);
+        boton.classList.remove('activo', colores.btn4);
       } else {
         cable.style.transition = "stroke 0.3s ease, filter 0.3s ease";
         cable.style.stroke = "deepskyblue";
         cable.style.filter = "drop-shadow(0 0 10px deepskyblue)";
         estados.btn4 = true;
-        document.getElementById('btn4').classList.add('activo', colores.btn4);
+        boton.classList.add('activo', colores.btn4);
       }
     }
 
     // === BOTÓN 5: Cables Violetas ===
     else if (id === 'btn5') {
       const cable = document.getElementById('cableVioleta');
+      boton.disabled = true;
+      setTimeout(() => (boton.disabled = false), 500);
+
       if (estados.btn5) {
         cable.style.transition = "stroke 0.5s ease, filter 0.5s ease";
         cable.style.stroke = "rgb(128, 0, 255)";
         cable.style.filter = "none";
         estados.btn5 = false;
-        document.getElementById('btn5').classList.remove('activo', colores.btn5);
+        boton.classList.remove('activo', colores.btn5);
       } else {
         cable.style.transition = "stroke 0.3s ease, filter 0.3s ease";
         cable.style.stroke = "violet";
         cable.style.filter = "drop-shadow(0 0 10px violet)";
         estados.btn5 = true;
-        document.getElementById('btn5').classList.add('activo', colores.btn5);
+        boton.classList.add('activo', colores.btn5);
       }
     }
   });
 });
-</script>
 
-<!-- === AYUDA VISUAL DE COORDENADAS === -->
-<div id="coordHelper"
-     style="position:fixed; bottom:10px; right:10px;
-            background:rgba(0,0,0,0.7); color:#0f0;
-            font-family:monospace; font-size:14px;
-            padding:8px 12px; border-radius:8px; z-index:9999;">
-  Mueve el mouse...
-</div>
-
-<script>
-  const helper = document.getElementById("coordHelper");
-  document.addEventListener("mousemove", (e) => {
-    const vw = (e.clientX / window.innerWidth) * 100;
-    const vh = (e.clientY / window.innerHeight) * 100;
-    helper.textContent = `top: ${vh.toFixed(1)}vh; left: ${vw.toFixed(1)}vw;`;
-  });
 </script>
 
 </body>
 </html>
+
 
 
 
