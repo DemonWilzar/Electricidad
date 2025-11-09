@@ -112,33 +112,33 @@ button {
   button:active { filter: brightness(0.6); }
 
   /* ==== POSICIONES Y TAMAÑOS OBJETOS ==== */
-  #Interruptor_Celda { top: 250px; left: 1250px; width: 90px; }
-#Interruptor_Trafos { top: 270px; left: 1130px; width: 70px; }
-#Acople { top: 176px; left: 627px; width: 58px; }
-#Acople_Barra { top: 850px; left: 350px; width: 58px; }  
+	#Interruptor_Celda { top: 250px; left: 1250px; width: 90px; }
+	#Interruptor_Trafos { top: 270px; left: 1130px; width: 70px; }
+	#Acople { top: 190px; left: 655px; width: 60px; }
+	#Acople_Barra { top: 825px; left: 380px; width: 60px; }  
   
-#Celda { top: 146px; left: 1250px; width: 90px; }
-#N1 { top: 270px; left: 1060px; width: 70px; }
-#N2 { top: 270px; left: 990px; width: 70px; }
-#Trafo_1 { top: 117px; left: 1064px; width: 88px; }
-#Trafo_2 { top: 117px; left: 976px; width: 88px; }
-#Tablero_FM { top: 107px; left: 802px; width: 73px; }
-#Tablero_Emer { top: 186px; left: 802px; width: 73px; }
-#FM { top: 107px; left: 627px; width: 58px; }
-#Emergencia { top: 244px; left: 627px; width: 58px; }
-#Tablero_Guardia { top: 741px; left: 408px; width: 58px; }
-#Tablero_Quirofano { top: 819px; left: 511px; width: 73px; }
-#FM_1 { top: 888px; left: 700px; width: 29px; }
-#FM_2 { top: 888px; left: 737px; width: 29px; }
-#FM_3 { top: 888px; left: 774px; width: 29px; }
+	#Celda { top: 140px; left: 1250px; width: 90px; }
+	#N1 { top: 270px; left: 1060px; width: 70px; }
+	#N2 { top: 270px; left: 990px; width: 70px; }
+	#Trafo_1 { top: 140px; left: 1110px; width: 90px; }
+	#Trafo_2 { top: 140px; left: 1020px; width: 90px; }
+	#Tablero_FM { top: 140px; left: 850px; width: 70px; }
+	#Tablero_Emer { top: 220px; left: 850px; width: 70px; }
+	#FM { top: 125px; left: 655px; width: 60px; }
+	#Emergencia { top: 255px; left: 655px; width: 60px; }
+	#Tablero_Guardia { top: 690px; left: 425px; width: 60px; }
+	#Tablero_Quirofano { top: 750px; left: 530px; width: 75px; }
+	#FM_1 { top: 820px; left: 790px; width: 35px; }
+	#FM_2 { top: 820px; left: 750px; width: 35px; }
+	#FM_3 { top: 820px; left: 710px; width: 35px; }
 
-#Grupos { top: 770px; left: 87px; width: 146px; }
-#PLC { top: 844px; left: 241px; width: 102px; }
-#E_1 { top: 888px; left: 423px; width: 29px; }
-#E_2 { top: 908px; left: 460px; width: 22px; }
-#E_3 { top: 888px; left: 489px; width: 29px; }
-#Grupo_Guardia { top: 546px; left: 80px; width: 102px; }
-#Grupo_Quirofano { top: 546px; left: 204px; width: 102px; }
+	#Grupos { top: 795px; left: 155px; width: 140px; }
+	#PLC { top: 815px; left: 287px; width: 120px; }
+	#E_1 { top: 830px; left: 500px; width: 30px; }
+	#E_2 { top: 840px; left: 470px; width: 25px; }
+	#E_3 { top: 830px; left: 440px; width: 30px; }
+	#Grupo_Guardia { top: 600px; left: 260px; width: 120px; }
+	#Grupo_Quirofano { top: 600px; left: 110px; width: 120px; }
 
 
 /* cables detrás de los objetos */
@@ -161,14 +161,54 @@ svg {
     <!-- ==== CAPAS DE CABLES (SVG) ==== -->
     <svg id="cables-rojos"  style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
       <polyline id="cableRojo" points="" stroke="red" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+	</svg>
+	<svg id="cables-rojosExtra"  style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+	  <polyline id="cableRojoExtra" points="" stroke="red" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+    </svg>
+	
+	<svg id="cables-Grupos1"  style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+	  <polyline id="cableGRUPOS1" points="" stroke="red" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+    </svg>
+		<svg id="cables-Grupos2"  style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+	  <polyline id="cableGRUPOS2" points="" stroke="red" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+    </svg>
+		<svg id="cables-Grupos3"  style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+	  <polyline id="cableGRUPOS3" points="" stroke="red" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+    </svg>
+		<svg id="cables-Grupos4"  style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+	  <polyline id="cableGRUPOS4" points="" stroke="red" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+    </svg>
+		<svg id="cables-Grupos5"  style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+	  <polyline id="cableGRUPOS5" points="" stroke="red" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+    </svg>
+		<svg id="cables-Grupos6"  style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+	  <polyline id="cableGRUPOS6" points="" stroke="red" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
     </svg>
 
     <svg id="cables-azules"  style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
       <polyline id="cableAzul" points="" stroke="blue" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
     </svg>
+	    <svg id="cables-azulesExtra"  style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+      <polyline id="cableAzulExtra" points="" stroke="blue" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+    </svg>
+		<svg id="cables-azulesExtra1"  style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+      <polyline id="cableAzulExtra1" points="" stroke="blue" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+    </svg>
+		<svg id="cables-azulesExtra2"  style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+      <polyline id="cableAzulExtra2" points="" stroke="blue" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+    </svg>
+	<svg id="cables-azulesExtra3"  style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+      <polyline id="cableAzulExtra3" points="" stroke="blue" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+    </svg>
 
     <svg id="cables-violetas" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
       <polyline id="cableVioleta" points="" stroke="rgb(128, 0, 255)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+    </svg>
+	    <svg id="cables-violetasExtra" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+      <polyline id="cableVioletaExtra" points="" stroke="rgb(128, 0, 255)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+    </svg>
+		<svg id="cables-violetasExtra1" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+      <polyline id="cableVioletaExtra1" points="" stroke="rgb(255, 140, 0)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
     </svg>
 
 <!-- ==== OBJETOS ==== -->
@@ -213,50 +253,169 @@ svg {
 <script>
 // ==== CABLES CON WAYPOINTS ====
 
-// 🔴 CABLES ROJOS (ya creados arriba)
+// ==== CABLE ROJO PRINCIPAL ====
 const waypointsRojo = [
-  { top: 22, left: 85 },
-  { top: 31, left: 85 },
-  { top: 31, left: 77 },
-  { top: 37, left: 77 },
-  { top: 37, left: 74 },
-  { top: 31, left: 74 },
-  { top: 16, left: 74 }
+  { top: 160, left: 1240 },
+  { top: 260, left: 1240 },
+  { top: 260, left: 1140 },
+  { top: 350, left: 1140 },
+  { top: 350, left: 1080 },
+  { top: 260, left: 1080 },
+  { top: 160, left: 1080 }
+];
+
+// ==== ROJO DE INTERRUPTOR A 1 Y 2 ====
+const waypointsRojoExtra = [
+  { top: 350, left: 1080 },
+  { top: 350, left: 1000 },
+  { top: 260, left: 1000 }
+];
+
+// ==== GRUPOS A PLC, Es Y FMs ====
+const waypointsGRUPOS1 = [
+  { top: 830, left: 790 },
+  { top: 900, left: 790 },
+  { top: 900, left: 100 },
+  { top: 850, left: 100 },
+  { top: 850, left: 130 },
+  { top: 900, left: 130 },
+  { top: 900, left: 170 },
+  { top: 850, left: 170 },
+  { top: 850, left: 200 },
+  { top: 900, left: 200 },
+  { top: 900, left: 245 },
+  { top: 850, left: 245 },
+  { top: 850, left: 270 },
+  { top: 900, left: 270 },
+  { top: 900, left: 300 },
+  { top: 850, left: 300 },
+  { top: 850, left: 330 },
+  { top: 900, left: 330 },
+  { top: 900, left: 440 },
+  { top: 830, left: 440 }
+];
+const waypointsGRUPOS2 = [
+  { top: 830, left: 470 },
+  { top: 900, left: 470 },
+  { top: 900, left: 500 },
+  { top: 830, left: 500 }
+];
+const waypointsGRUPOS3 = [
+  { top: 830, left: 750 },
+  { top: 900, left: 750 },
+  { top: 900, left: 710 },
+  { top: 830, left: 710 }
 ];
 
 // 🔵 CABLES AZULES
 const waypointsAzul = [
-  { top: 40, left: 60 },
-  { top: 48, left: 60 },
-  { top: 48, left: 70 }
+  { top: 160, left: 1120 },
+  { top: 80, left: 1120 },
+  { top: 80, left: 870 },
+  { top: 130, left: 870 },
+  { top: 130, left: 600 },
+  { top: 290, left: 600 },
+  { top: 290, left: 450 },
+  { top: 690, left: 450 },
+  { top: 690, left: 250 },
+  { top: 590, left: 250 }
+];
+// ==== AZUL EMERGENCIA A TABLERO ====
+const waypointsAzulExtra = [
+  { top: 260, left: 650 },
+  { top: 260, left: 600 }
+];
+// ==== AZUL Tablero FM a INTERRUPTORES FM ====
+const waypointsAzulExtra1 = [
+  { top: 140, left: 870 },
+  { top: 140, left: 750 },
+  { top: 300, left: 750 },
+  { top: 300, left: 460 },
+  { top: 775, left: 460 },
+  { top: 775, left: 800 },
+  { top: 830, left: 800 }
+];
+const waypointsAzulExtra2 = [
+  { top: 830, left: 760 },
+  { top: 775, left: 760 }
+];
+const waypointsAzulExtra3 = [
+  { top: 830, left: 720 },
+  { top: 775, left: 720 }
 ];
 
 // 🟣 CABLES VIOLETAS
 const waypointsVioleta = [
-  { top: 55, left: 70 },
-  { top: 60, left: 70 },
-  { top: 60, left: 80 }
+  { top: 260, left: 1000 },
+  { top: 160, left: 1000 },
+  { top: 160, left: 920 },
+  { top: 200, left: 920 },
+  { top: 200, left: 760 },
+  { top: 310, left: 760 },
+  { top: 310, left: 470 },
+  { top: 830, left: 470 }
+];
+
+// ==== VIOLETA E A OTRA E ====
+const waypointsVioletaExtra = [
+  { top: 830, left: 440 },
+  { top: 785, left: 440 },
+  { top: 785, left: 500 },
+  { top: 830, left: 500 },
+  { top: 785, left: 500 },
+  { top: 785, left: 540 },
+  { top: 760, left: 540 }
+];
+// ==== NARANJA TABLERO QUIROFANO A GRUPO ====
+const waypointsVioletaExtra1 = [
+  { top: 750, left: 500 },
+  { top: 720, left: 500 },
+  { top: 720, left: 300 },
+  { top: 700, left: 300 },
+  { top: 700, left: 100 },
+  { top: 650, left: 100 }
 ];
 
 // Funciones de ayuda
 function vh(v) { return (v / 100) * window.innerHeight; }
 function vw(v) { return (v / 100) * window.innerWidth; }
 
+// ==== FUNCIÓN GENERAL PARA DIBUJAR ====
 function dibujarCable(id, waypoints) {
-  const puntos = waypoints.map(p => `${vw(p.left)},${vh(p.top)}`).join(" ");
+  const puntos = waypoints.map(p => `${p.left},${p.top}`).join(" ");
   document.getElementById(id).setAttribute("points", puntos);
 }
 
 // Redibujar todos al cargar o redimensionar
 window.addEventListener("load", () => {
   dibujarCable("cableRojo", waypointsRojo);
+  dibujarCable("cableRojoExtra", waypointsRojoExtra);
+  dibujarCable("cableGRUPOS1", waypointsGRUPOS1);
+  dibujarCable("cableGRUPOS2", waypointsGRUPOS2);
+  dibujarCable("cableGRUPOS3", waypointsGRUPOS3);
   dibujarCable("cableAzul", waypointsAzul);
+  dibujarCable("cableAzulExtra", waypointsAzulExtra);
+  dibujarCable("cableAzulExtra1", waypointsAzulExtra1);
+  dibujarCable("cableAzulExtra2", waypointsAzulExtra2);
+  dibujarCable("cableAzulExtra3", waypointsAzulExtra3);
   dibujarCable("cableVioleta", waypointsVioleta);
+  dibujarCable("cableVioletaExtra", waypointsVioletaExtra);
+  dibujarCable("cableVioletaExtra1", waypointsVioletaExtra1);
 });
 window.addEventListener("resize", () => {
   dibujarCable("cableRojo", waypointsRojo);
+  dibujarCable("cableRojoExtra", waypointsRojoExtra);
+  dibujarCable("cableGRUPOS1", waypointsGRUPOS1);
+  dibujarCable("cableGRUPOS2", waypointsGRUPOS2);
+  dibujarCable("cableGRUPOS3", waypointsGRUPOS3);
   dibujarCable("cableAzul", waypointsAzul);
+  dibujarCable("cableAzulExtra", waypointsAzulExtra);
+  dibujarCable("cableAzulExtra1", waypointsAzulExtra1);
+  dibujarCable("cableAzulExtra2", waypointsAzulExtra2);
+  dibujarCable("cableAzulExtra3", waypointsAzulExtra3);
   dibujarCable("cableVioleta", waypointsVioleta);
+  dibujarCable("cableVioletaExtra", waypointsVioletaExtra);
+  dibujarCable("cableVioletaExtra1", waypointsVioletaExtra1);
 });
 
 
@@ -389,82 +548,98 @@ botones.forEach(boton => {
       boton.classList.add('activo', color);
     }
 
-    // === BOTÓN 3: Cables Rojos ===
-    else if (id === 'btn3') {
-      const cable = document.getElementById('cableRojo');
-      boton.disabled = true; // cooldown de 0.5s
-      setTimeout(() => (boton.disabled = false), 500);
+// === BOTÓN 3: Cables Rojos ===
+else if (id === 'btn3') {
+  const cable1 = document.getElementById('cableRojo');
+  const cable2 = document.getElementById('cableRojoExtra');
+  const cable3 = document.getElementById('cableGRUPOS1');
+    const cable4 = document.getElementById('cableGRUPOS2');
+	  const cable5 = document.getElementById('cableGRUPOS3');
+  boton.disabled = true; // cooldown de 0.5s
+  setTimeout(() => (boton.disabled = false), 500);
 
-      if (estados.btn3) {
-        cable.style.transition = "stroke 0.5s ease, filter 0.5s ease";
-        cable.style.stroke = "rgb(255, 0, 0)";
-        cable.style.filter = "none";
-        estados.btn3 = false;
-        boton.classList.remove('activo', colores.btn3);
-      } else {
-        cable.style.transition = "stroke 0.3s ease, filter 0.3s ease";
-        cable.style.stroke = "red";
-        cable.style.filter = "drop-shadow(0 0 10px red)";
-        estados.btn3 = true;
-        boton.classList.add('activo', colores.btn3);
-      }
-    }
+  if (estados.btn3) {
+    // 🔴 Apagar
+    [cable1, cable2, cable3, cable4, cable5].forEach(cable => {
+      cable.style.transition = "stroke 0.5s ease, filter 0.5s ease";
+      cable.style.stroke = "rgb(255, 0, 0)";
+      cable.style.filter = "none";
+    });
+    estados.btn3 = false;
+    boton.classList.remove('activo', colores.btn3);
+  } else {
+    // 🔴 Encender
+    [cable1, cable2, cable3, cable4, cable5].forEach(cable => {
+      cable.style.transition = "stroke 0.3s ease, filter 0.3s ease";
+      cable.style.stroke = "red";
+      cable.style.filter = "drop-shadow(0 0 10px red)";
+    });
+    estados.btn3 = true;
+    boton.classList.add('activo', colores.btn3);
+  }
+}
 
-    // === BOTÓN 4: Cables Azules ===
-    else if (id === 'btn4') {
-      const cable = document.getElementById('cableAzul');
-      boton.disabled = true;
-      setTimeout(() => (boton.disabled = false), 500);
+// === BOTÓN 4: Cables Azules ===
+else if (id === 'btn4') {
+  const cable1 = document.getElementById('cableAzul');
+  const cable2 = document.getElementById('cableAzulExtra');
+  const cable3 = document.getElementById('cableAzulExtra1');
+  const cable4 = document.getElementById('cableAzulExtra2');
+  const cable5 = document.getElementById('cableAzulExtra3');
+  boton.disabled = true;
+  setTimeout(() => (boton.disabled = false), 500);
 
-      if (estados.btn4) {
-        cable.style.transition = "stroke 0.5s ease, filter 0.5s ease";
-        cable.style.stroke = "blue";
-        cable.style.filter = "none";
-        estados.btn4 = false;
-        boton.classList.remove('activo', colores.btn4);
-      } else {
-        cable.style.transition = "stroke 0.3s ease, filter 0.3s ease";
-        cable.style.stroke = "deepskyblue";
-        cable.style.filter = "drop-shadow(0 0 10px deepskyblue)";
-        estados.btn4 = true;
-        boton.classList.add('activo', colores.btn4);
-      }
-    }
+  if (estados.btn4) {
+    // 🔵 Apagar
+    [cable1, cable2, cable3, cable4, cable5].forEach(cable => {
+      cable.style.transition = "stroke 0.5s ease, filter 0.5s ease";
+      cable.style.stroke = "blue";
+      cable.style.filter = "none";
+    });
+    estados.btn4 = false;
+    boton.classList.remove('activo', colores.btn4);
+  } else {
+    // 🔵 Encender
+    [cable1, cable2, cable3, cable4, cable5].forEach(cable => {
+      cable.style.transition = "stroke 0.3s ease, filter 0.3s ease";
+      cable.style.stroke = "deepskyblue";
+      cable.style.filter = "drop-shadow(0 0 10px deepskyblue)";
+    });
+    estados.btn4 = true;
+    boton.classList.add('activo', colores.btn4);
+  }
+}
 
-    // === BOTÓN 5: Cables Violetas ===
-    else if (id === 'btn5') {
-      const cable = document.getElementById('cableVioleta');
-      boton.disabled = true;
-      setTimeout(() => (boton.disabled = false), 500);
+// === BOTÓN 5: Cables Violetas ===
+else if (id === 'btn5') {
+  const cable1 = document.getElementById('cableVioleta');
+  const cable2 = document.getElementById('cableVioletaExtra');
+  const cable3 = document.getElementById('cableVioletaExtra1');
+  boton.disabled = true;
+  setTimeout(() => (boton.disabled = false), 500);
 
-      if (estados.btn5) {
-        cable.style.transition = "stroke 0.5s ease, filter 0.5s ease";
-        cable.style.stroke = "rgb(128, 0, 255)";
-        cable.style.filter = "none";
-        estados.btn5 = false;
-        boton.classList.remove('activo', colores.btn5);
-      } else {
-        cable.style.transition = "stroke 0.3s ease, filter 0.3s ease";
-        cable.style.stroke = "violet";
-        cable.style.filter = "drop-shadow(0 0 10px violet)";
-        estados.btn5 = true;
-        boton.classList.add('activo', colores.btn5);
-      }
-    }
+  if (estados.btn5) {
+    // 🟣 Apagar
+    [cable1, cable2, cable3].forEach(cable => {
+      cable.style.transition = "stroke 0.5s ease, filter 0.5s ease";
+      cable.style.stroke = "rgb(128, 0, 255)";
+      cable.style.filter = "none";
+    });
+    estados.btn5 = false;
+    boton.classList.remove('activo', colores.btn5);
+  } else {
+    // 🟣 Encender
+    [cable1, cable2, cable3].forEach(cable => {
+      cable.style.transition = "stroke 0.3s ease, filter 0.3s ease";
+      cable.style.stroke = "violet";
+      cable.style.filter = "drop-shadow(0 0 10px violet)";
+    });
+    estados.btn5 = true;
+    boton.classList.add('activo', colores.btn5);
+  }
+}
   });
 });
-
 </script>
-
-<script>
-
 </body>
 </html>
-
-
-
-
-
-
-
-
