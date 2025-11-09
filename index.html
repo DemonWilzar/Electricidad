@@ -167,15 +167,14 @@
   <button id="btn4">Cables Azules</button>
   <button id="btn5">Cables Violetas</button>
 
-  <script>
-    // ==== CABLES CON WAYPOINTS ====
+<script>
+// ==== CABLES CON WAYPOINTS ====
 const waypointsRojo = [
   { top: 22, left: 85 },
   { top: 31, left: 85 },
   { top: 31, left: 77 }
 ];
 
-// Convierte vh/vw a coordenadas absolutas según ventana
 function vh(v) { return (v / 100) * window.innerHeight; }
 function vw(v) { return (v / 100) * window.innerWidth; }
 
@@ -184,171 +183,151 @@ function dibujarCableRojo() {
   document.getElementById("cableRojo").setAttribute("points", puntos);
 }
 
-// Redibuja al cargar y al cambiar tamaño
 window.addEventListener("load", dibujarCableRojo);
 window.addEventListener("resize", dibujarCableRojo);
 
-    const grupos = {
-      btn1: ['Celda', 'N1', 'N2', 'Trafo_1', 'Trafo_2', 'Tablero_FM', 'Tablero_Emer', 'FM', 'Emergencia',
-	  'Tablero_Guardia', 'Tablero_Quirofano', 'FM_1', 'FM_2', 'FM_3'],
-      btn2: ['Grupos', 'PLC', 'E_1', 'E_2', 'E_3', 'Tablero_Quirofano', 'Tablero_Emer', 'Grupo_Quirofano',
-	  'FM_1', 'FM_2', 'FM_3', 'Tablero_FM', 'FM', 'Emergencia', 'Tablero_Guardia', 'Grupo_Guardia'],
-      btn3: [],
-      btn4: [],
-      btn5: []
-    };
+// ==== GRUPOS Y COLORES ====
+const grupos = {
+  btn1: ['Celda', 'N1', 'N2', 'Trafo_1', 'Trafo_2', 'Tablero_FM', 'Tablero_Emer', 'FM', 'Emergencia',
+  'Tablero_Guardia', 'Tablero_Quirofano', 'FM_1', 'FM_2', 'FM_3'],
 
-    const colores = {
-      btn1: 'amarillo',
-      btn2: 'amarillo',
-      btn3: 'rojo',
-      btn4: 'azul',
-      btn5: 'violeta'
-    };
+  btn2: ['Grupos', 'PLC', 'E_1', 'E_2', 'E_3', 'Tablero_Quirofano', 'Tablero_Emer', 'Grupo_Quirofano',
+  'FM_1', 'FM_2', 'FM_3', 'Tablero_FM', 'FM', 'Emergencia', 'Tablero_Guardia', 'Grupo_Guardia'],
 
-    const botones = Object.keys(grupos).map(id => document.getElementById(id));
-    let bloqueado = false;
-    let estados = { btn1: false, btn2: false, btn3: false, btn4: false, btn5: false };
+  btn3: [],
+  btn4: [],
+  btn5: []
+};
 
-    function encenderGrupo(idBoton) {
-      const color = colores[idBoton];
-      grupos[idBoton].forEach((idObj, i) => {
-        setTimeout(() => document.getElementById(idObj).classList.add('efectoBase', color), i * 300);
-      });
-      estados[idBoton] = true;
-      document.getElementById(idBoton).classList.add('activo', color);
-    }
+const colores = {
+  btn1: 'amarillo',
+  btn2: 'amarillo',
+  btn3: 'rojo',
+  btn4: 'azul',
+  btn5: 'violeta'
+};
 
-    function apagarGrupo(idBoton, rapido = false) {
-      const delay = rapido ? 0 : 300;
-      grupos[idBoton].forEach((idObj, i) => {
-        setTimeout(() => document.getElementById(idObj).className = 'objeto', i * delay);
-      });
-      estados[idBoton] = false;
-      document.getElementById(idBoton).className = '';
-    }
+const botones = Object.keys(grupos).map(id => document.getElementById(id));
+let bloqueado = false;
+let estados = { btn1: false, btn2: false, btn3: false, btn4: false, btn5: false };
 
-    function bloquearBotones(tiempo) {
-      bloqueado = true;
-      botones.forEach(b => b.disabled = true);
-      setTimeout(() => {
-        bloqueado = false;
-        botones.forEach(b => b.disabled = false);
-      }, tiempo);
-    }
-
-    // ==== Inicializar botón 1 automáticamente ====
-    window.onload = () => encenderGrupo('btn1');
-	Interruptor_Celda.style.filter = "brightness(0.8)";
-    Interruptor_Celda.style.opacity = "1";
-	Interruptor_Trafos.style.filter = "brightness(0.8)";
-    Interruptor_Trafos.style.opacity = "1";
-	Acople.style.filter = "brightness(0.8)";
-    Acople.style.opacity = "1";
-	Acople_Barra.style.filter = "brightness(0.8)";
-    Acople_Barra.style.opacity = "1";
-
-
-    // ==== Lógica general ====
-    botones.forEach(boton => {
-      boton.addEventListener('click', () => {
-        if (bloqueado) return;
-        const id = boton.id;
-
-        // === Botón 1: Funcionamiento Normal ===
-        if (id === 'btn1') {
-          if (estados.btn2) {
-            // Si el 2 está activo, lo apaga rápidamente antes de encender el 1
-            bloquearBotones(500);
-            apagarGrupo('btn2', true);
-            setTimeout(() => encenderGrupo('btn1'), 250);
-          } else if (!estados.btn1) {
-            bloquearBotones(500);
-            encenderGrupo('btn1');
-          } else {
-            bloquearBotones(500);
-            apagarGrupo('btn1');
-          }
-        }
-
-        // === Botón 2: Corte de Luz ===
-else if (id === 'btn2') {
-  if (estados.btn1) {
-    bloquearBotones(500);
-    apagarGrupo('btn1');
-    // Esperar 4s luego de apagar Funcionamiento Normal
-    setTimeout(() => {
-      // Enciende Grupos y PLC enseguida
-      ['Grupos', 'PLC'].forEach(idObj => {
-        document.getElementById(idObj).classList.add('efectoBase', colores.btn2);
-      });
-
-      // El resto 4s después
-      setTimeout(() => {
-        grupos.btn2
-          .filter(o => o !== 'Grupos' && o !== 'PLC')
-          .forEach((idObj, i) => {
-            setTimeout(() => document.getElementById(idObj).classList.add('efectoBase', colores.btn2), i * 300);
-          });
-        estados.btn2 = true;
-        document.getElementById('btn2').classList.add('activo', colores.btn2);
-      }, 4000);
-    }, 4200);
-  } else if (!estados.btn2) {
-    bloquearBotones(500);
-    // Enciende Grupos y PLC enseguida
-    ['Grupos', 'PLC'].forEach(idObj => {
-      document.getElementById(idObj).classList.add('efectoBase', colores.btn2);
-    });
-    // El resto tras 4s
-    setTimeout(() => {
-      grupos.btn2
-        .filter(o => o !== 'Grupos' && o !== 'PLC')
-        .forEach((idObj, i) => {
-          setTimeout(() => document.getElementById(idObj).classList.add('efectoBase', colores.btn2), i * 300);
-        });
-      estados.btn2 = true;
-      document.getElementById('btn2').classList.add('activo', colores.btn2);
-    }, 4000);
-  } else {
-    bloquearBotones(500);
-    apagarGrupo('btn2');
-  }
+// ==== FUNCIONES AUXILIARES ====
+function esperar(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function encender(idObj, color) {
+  document.getElementById(idObj).classList.add('efectoBase', color);
+}
 
-        // === Botones 3, 4 y 5 ===
-        else {
-          if (estados[id]) {
-            bloquearBotones(100);
-            apagarGrupo(id);
-          } else {
-            bloquearBotones(100);
-            encenderGrupo(id);
-          }
-        }
-      });
-    });
-	  </script>
-  
-  <!-- === AYUDA VISUAL DE COORDENADAS === -->
-<div id="coordHelper"
-     style="position:fixed; bottom:10px; right:10px;
-            background:rgba(0,0,0,0.7); color:#0f0;
-            font-family:monospace; font-size:14px;
-            padding:8px 12px; border-radius:8px; z-index:9999;">
-  Mueve el mouse...
-</div>
-
-<script>
-  // Mostrar coordenadas en vh/vw en tiempo real
-  const helper = document.getElementById("coordHelper");
-  document.addEventListener("mousemove", (e) => {
-    const vw = (e.clientX / window.innerWidth) * 100;
-    const vh = (e.clientY / window.innerHeight) * 100;
-    helper.textContent = `top: ${vh.toFixed(1)}vh; left: ${vw.toFixed(1)}vw;`;
+function apagarGrupo(idBoton, rapido = false) {
+  const delay = rapido ? 0 : 300;
+  grupos[idBoton].forEach((idObj, i) => {
+    setTimeout(() => document.getElementById(idObj).className = 'objeto', i * delay);
   });
-    </script>  
+  estados[idBoton] = false;
+  document.getElementById(idBoton).className = '';
+}
+
+function bloquearBotones(tiempo) {
+  bloqueado = true;
+  botones.forEach(b => b.disabled = true);
+  setTimeout(() => {
+    bloqueado = false;
+    botones.forEach(b => b.disabled = false);
+  }, tiempo);
+}
+
+function encenderGrupo(idBoton) {
+  const color = colores[idBoton];
+  grupos[idBoton].forEach((idObj, i) => {
+    setTimeout(() => encender(idObj, color), i * 300);
+  });
+  estados[idBoton] = true;
+  document.getElementById(idBoton).classList.add('activo', color);
+}
+
+// ==== Inicializar botón 1 automáticamente ====
+window.onload = () => {
+  encenderGrupo('btn1');
+  Interruptor_Celda.style.filter = "brightness(0.8)";
+  Interruptor_Celda.style.opacity = "1";
+  Interruptor_Trafos.style.filter = "brightness(0.8)";
+  Interruptor_Trafos.style.opacity = "1";
+  Acople.style.filter = "brightness(0.8)";
+  Acople.style.opacity = "1";
+  Acople_Barra.style.filter = "brightness(0.8)";
+  Acople_Barra.style.opacity = "1";
+};
+
+// ==== LÓGICA DE BOTONES ====
+botones.forEach(boton => {
+  boton.addEventListener('click', async () => {
+    if (bloqueado) return;
+    const id = boton.id;
+
+    // === BOTÓN 1: Funcionamiento Normal ===
+    if (id === 'btn1') {
+      if (estados.btn2) {
+        bloquearBotones(500);
+        apagarGrupo('btn2', true);
+        setTimeout(() => encenderGrupo('btn1'), 250);
+      } else if (!estados.btn1) {
+        bloquearBotones(500);
+        encenderGrupo('btn1');
+      } else {
+        bloquearBotones(500);
+        apagarGrupo('btn1');
+      }
+    }
+
+    // === BOTÓN 2: Corte de Luz (Secuencia avanzada) ===
+    else if (id === 'btn2') {
+      const color = colores.btn2;
+      bloquearBotones(10000); // evita spam mientras corre la secuencia
+
+      if (estados.btn1) {
+        apagarGrupo('btn1');
+        await esperar(4200); // esperar apagado + retardo base
+      }
+
+      // 🟢 Fase 0: Grupos y PLC
+      ['Grupos', 'PLC'].forEach(idObj => encender(idObj, color));
+
+      // 🕓 Esperar 4 segundos
+      await esperar(4000);
+
+      // 🟢 Fase 1: E_1, E_3, E_2, FM_1, FM_2, FM_3
+      ['E_1', 'E_3', 'E_2', 'FM_1', 'FM_2', 'FM_3'].forEach(idObj => encender(idObj, color));
+
+      // 🕓 Esperar 0.5 segundo
+      await esperar(500);
+
+      // 🟢 Fase 2: Tablero_Quirofano, Tablero_Emer, Tablero_FM, FM
+      ['Tablero_Quirofano', 'Tablero_Emer', 'Tablero_FM', 'FM', 'Emergencia', 'Tablero_Guardia'].forEach(idObj => encender(idObj, color));
+
+      // 🕓 Esperar 0.5 segundo
+      await esperar(500);
+
+      // 🟢 Fase 3: Emergencia, Tablero_Guardia, Grupo_Guardia
+      ['Grupo_Quirofano', 'Grupo_Guardia'].forEach(idObj => encender(idObj, color));
+
+      estados.btn2 = true;
+      boton.classList.add('activo', color);
+    }
+
+    // === BOTONES 3, 4, 5 ===
+    else {
+      if (estados[id]) {
+        bloquearBotones(100);
+        apagarGrupo(id);
+      } else {
+        bloquearBotones(100);
+        encenderGrupo(id);
+      }
+    }
+  });
+});
+</script>
 </body>
 </html>
-
