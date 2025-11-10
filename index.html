@@ -346,9 +346,9 @@ const waypointsAzulExtra = [
 const waypointsAzulExtra1 = [
   { top: 140, left: 870 },
   { top: 140, left: 750 },
-  { top: 300, left: 750 },
-  { top: 300, left: 460 },
-  { top: 775, left: 460 },
+  { top: 310, left: 750 },
+  { top: 310, left: 470 },
+  { top: 775, left: 470 },
   { top: 775, left: 800 },
   { top: 830, left: 800 }
 ];
@@ -368,8 +368,10 @@ const waypointsVioleta = [
   { top: 160, left: 920 },
   { top: 200, left: 920 },
   { top: 200, left: 760 },
-  { top: 310, left: 760 },
-  { top: 310, left: 470 },
+  { top: 300, left: 760 },
+  { top: 300, left: 460 },
+  { top: 785, left: 460 },
+  { top: 785, left: 470 },
   { top: 830, left: 470 }
 ];
 
@@ -384,7 +386,7 @@ const waypointsVioletaExtra = [
   { top: 760, left: 540 }
 ];
 // ==== NARANJA TABLERO QUIROFANO A GRUPO ====
-const waypointsVioletaExtra1 = [
+const waypointsNaranja = [
   { top: 750, left: 500 },
   { top: 720, left: 500 },
   { top: 720, left: 300 },
@@ -417,7 +419,7 @@ window.addEventListener("load", () => {
   dibujarCable("cableAzulExtra3", waypointsAzulExtra3);
   dibujarCable("cableVioleta", waypointsVioleta);
   dibujarCable("cableVioletaExtra", waypointsVioletaExtra);
-  dibujarCable("cableVioletaExtra1", waypointsVioletaExtra1);
+  dibujarCable("cableNaranja", waypointsNaranja);
 });
 window.addEventListener("resize", () => {
   dibujarCable("cableRojo", waypointsRojo);
@@ -432,7 +434,7 @@ window.addEventListener("resize", () => {
   dibujarCable("cableAzulExtra3", waypointsAzulExtra3);
   dibujarCable("cableVioleta", waypointsVioleta);
   dibujarCable("cableVioletaExtra", waypointsVioletaExtra);
-  dibujarCable("cableVioletaExtra1", waypointsVioletaExtra1);
+  dibujarCable("cableNaranja", waypointsNaranja);
 });
 
 
@@ -567,30 +569,30 @@ botones.forEach(boton => {
 
 // === BOTÓN 3: Cables Rojos ===
 else if (id === 'btn3') {
-  const cable1 = document.getElementById('cableRojo');
-  const cable2 = document.getElementById('cableRojoExtra');
-  const cable3 = document.getElementById('cableGRUPOS1');
-    const cable4 = document.getElementById('cableGRUPOS2');
-	  const cable5 = document.getElementById('cableGRUPOS3');
-  boton.disabled = true; // cooldown de 0.5s
+  const cable = document.getElementById('cableRojo');
+  const cableExtra = document.getElementById('cableRojoExtra');
+  const cableGRUPOS1 = document.getElementById('cableGRUPOS1');
+  const cableGRUPOS2 = document.getElementById('cableGRUPOS2');
+  const cableGRUPOS3 = document.getElementById('cableGRUPOS3');
+  boton.disabled = true;
   setTimeout(() => (boton.disabled = false), 500);
 
   if (estados.btn3) {
-    // 🔴 Apagar
-    [cable1, cable2, cable3, cable4, cable5].forEach(cable => {
-      cable.style.transition = "stroke 0.5s ease, filter 0.5s ease";
-      cable.style.stroke = "rgb(255, 0, 0)";
-      cable.style.filter = "none";
-    });
+    // 🔻 Apagar efecto
+    cable.classList.remove('corrienteRoja');
+    cableExtra.classList.remove('corrienteRoja');
+    cableGRUPOS1.classList.remove('corrienteRoja');
+    cableGRUPOS2.classList.remove('corrienteRoja');
+    cableGRUPOS3.classList.remove('corrienteRoja');
     estados.btn3 = false;
     boton.classList.remove('activo', colores.btn3);
   } else {
-    // 🔴 Encender
-    [cable1, cable2, cable3, cable4, cable5].forEach(cable => {
-      cable.style.transition = "stroke 0.3s ease, filter 0.3s ease";
-      cable.style.stroke = "red";
-      cable.style.filter = "drop-shadow(0 0 10px red)";
-    });
+    // 🔺 Encender efecto
+    cable.classList.add('corrienteRoja');
+    cableExtra.classList.add('corrienteRoja');
+    cableGRUPOS1.classList.add('corrienteRoja');
+    cableGRUPOS2.classList.add('corrienteRoja');
+    cableGRUPOS3.classList.add('corrienteRoja');
     estados.btn3 = true;
     boton.classList.add('activo', colores.btn3);
   }
@@ -598,66 +600,112 @@ else if (id === 'btn3') {
 
 // === BOTÓN 4: Cables Azules ===
 else if (id === 'btn4') {
-  const cable1 = document.getElementById('cableAzul');
-  const cable2 = document.getElementById('cableAzulExtra');
-  const cable3 = document.getElementById('cableAzulExtra1');
-  const cable4 = document.getElementById('cableAzulExtra2');
-  const cable5 = document.getElementById('cableAzulExtra3');
+  const cable = document.getElementById('cableAzul');
+  const cableExtra = document.getElementById('cableAzulExtra');
+  const cableExtra1 = document.getElementById('cableAzulExtra1');
+  const cableExtra2 = document.getElementById('cableAzulExtra2');
+  const cableExtra3 = document.getElementById('cableAzulExtra3');
   boton.disabled = true;
   setTimeout(() => (boton.disabled = false), 500);
 
   if (estados.btn4) {
-    // 🔵 Apagar
-    [cable1, cable2, cable3, cable4, cable5].forEach(cable => {
-      cable.style.transition = "stroke 0.5s ease, filter 0.5s ease";
-      cable.style.stroke = "blue";
-      cable.style.filter = "none";
-    });
+    cable.classList.remove('corrienteAzul');
+    cableExtra.classList.remove('corrienteAzul');
+	cableExtra1.classList.remove('corrienteAzul');
+	cableExtra2.classList.remove('corrienteAzul');
+	cableExtra3.classList.remove('corrienteAzul');
     estados.btn4 = false;
     boton.classList.remove('activo', colores.btn4);
   } else {
-    // 🔵 Encender
-    [cable1, cable2, cable3, cable4, cable5].forEach(cable => {
-      cable.style.transition = "stroke 0.3s ease, filter 0.3s ease";
-      cable.style.stroke = "deepskyblue";
-      cable.style.filter = "drop-shadow(0 0 10px deepskyblue)";
-    });
+    cable.classList.add('corrienteAzul');
+    cableExtra.classList.add('corrienteAzul');
+	cableExtra1.classList.add('corrienteAzul');
+	cableExtra2.classList.add('corrienteAzul');
+	cableExtra3.classList.add('corrienteAzul');
     estados.btn4 = true;
     boton.classList.add('activo', colores.btn4);
   }
 }
 
-// === BOTÓN 5: Cables Violetas ===
+// === BOTÓN 5: Cables Violetas + Naranja ===
 else if (id === 'btn5') {
-  const cable1 = document.getElementById('cableVioleta');
-  const cable2 = document.getElementById('cableVioletaExtra');
-  const cable3 = document.getElementById('cableVioletaExtra1');
+  const cableVioleta = document.getElementById('cableVioleta');
+  const cableVioletaExtra = document.getElementById('cableVioletaExtra');
+  const cableNaranja = document.getElementById('cableNaranja'); // 🔶 nuevo
   boton.disabled = true;
   setTimeout(() => (boton.disabled = false), 500);
 
   if (estados.btn5) {
-    // 🟣 Apagar
-    [cable1, cable2, cable3].forEach(cable => {
-      cable.style.transition = "stroke 0.5s ease, filter 0.5s ease";
-      cable.style.stroke = "rgb(128, 0, 255)";
-      cable.style.filter = "none";
-    });
+    cableVioleta.classList.remove('corrienteVioleta');
+    cableVioletaExtra.classList.remove('corrienteVioleta');
+    cableNaranja.classList.remove('corrienteNaranja'); // 🔶 quita efecto
     estados.btn5 = false;
     boton.classList.remove('activo', colores.btn5);
   } else {
-    // 🟣 Encender
-    [cable1, cable2, cable3].forEach(cable => {
-      cable.style.transition = "stroke 0.3s ease, filter 0.3s ease";
-      cable.style.stroke = "violet";
-      cable.style.filter = "drop-shadow(0 0 10px violet)";
-    });
+    cableVioleta.classList.add('corrienteVioleta');
+    cableVioletaExtra.classList.add('corrienteVioleta');
+    cableNaranja.classList.add('corrienteNaranja'); // 🔶 activa efecto
     estados.btn5 = true;
     boton.classList.add('activo', colores.btn5);
   }
 }
+
   });
 });
 </script>
+
+<style>
+/* === EFECTO CORRIENTE INTERNA (sin brillo) === */
+@keyframes corrienteRoja {
+  to { stroke-dashoffset: -1000; }
+}
+
+.corrienteRoja {
+  stroke: red;
+  stroke-width: 4;
+  stroke-dasharray: 10 10;
+  animation: corrienteRoja 20s linear infinite;
+  filter: none; /* 🔸 sin brillo */
+}
+
+/* === EFECTO CORRIENTE INTERNA AZUL === */
+@keyframes corrienteAzul {
+  to { stroke-dashoffset: -1000; }
+}
+
+.corrienteAzul {
+  stroke: deepskyblue;
+  stroke-width: 4;
+  stroke-dasharray: 10 10;
+  animation: corrienteAzul 20s linear infinite;
+  filter: none;
+}
+
+/* === EFECTO CORRIENTE INTERNA VIOLETA === */
+@keyframes corrienteVioleta {
+  to { stroke-dashoffset: -1000; }
+}
+
+.corrienteVioleta {
+  stroke: violet;
+  stroke-width: 4;
+  stroke-dasharray: 10 10;
+  animation: corrienteVioleta 20s linear infinite;
+  filter: none;
+}
+
+/* === EFECTO CORRIENTE INTERNA NARANJA === */
+@keyframes corrienteNaranja {
+  to { stroke-dashoffset: -1000; }
+}
+
+.corrienteNaranja {
+  stroke: orange;
+  stroke-width: 4;
+  stroke-dasharray: 10 10;
+  animation: corrienteNaranja 20s linear infinite;
+  filter: none;
+}
+</style>
 </body>
 </html>
-
